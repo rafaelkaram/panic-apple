@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cvn5v82hnu6fd"]
+
+[ext_resource type="Script" uid="uid://p77105rsd7jb" path="res://GoodFood.cs" id="1_ecf88"]
+[ext_resource type="Texture2D" uid="uid://dh8uhahjl3ehg" path="res://food.png" id="1_yc4h2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecf88"]
+radius = 9.219544
+
+[node name="GoodFood" type="Area2D" unique_id=1263611317]
+scale = Vector2(2, 2)
+script = ExtResource("1_ecf88")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=899737342]
+texture = ExtResource("1_yc4h2")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=14253970]
+shape = SubResource("CircleShape2D_ecf88")

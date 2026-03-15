@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ccr5eyrw10fxx"]
+
+[ext_resource type="Texture2D" uid="uid://1uw6jqu4r218" path="res://poison.png" id="1_1dwur"]
+[ext_resource type="Script" uid="uid://dv75txbu8ah" path="res://CursedApple.cs" id="1_4rggm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rggm"]
+radius = 21.523243
+
+[sub_resource type="Animation" id="Animation_vdcej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0.7477112, 1.7471466, 33.156708, 39.71096)]
+}
+
+[sub_resource type="Animation" id="Animation_5r3ea"]
+resource_name = "falling"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0.7477112, 1.7471466, 33.156708, 39.71096), Rect2(0.7106018, 40.054462, 33.99745, 48.35719), Rect2(0.7106018, 39.81735, 32.500004, 48.385212), Rect2(1.3315125, 98.052216, 31.046082, 52.61133), Rect2(0.7106018, 154.38908, 30.911587, 52.53102), Rect2(0.7106018, 207.1674, 29.80423, 47.190018), Rect2(144.5635, 81.120346, 31.223679, 38.562927), Rect2(175.35991, 47.590595, 33.419693, 32.90884), Rect2(36.10312, 53.17889, 40.359894, 32.908833)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pm0og"]
+_data = {
+&"RESET": SubResource("Animation_vdcej"),
+&"falling": SubResource("Animation_5r3ea")
+}
+
+[node name="CursedApple" type="Area2D" unique_id=1768463385]
+collision_layer = 2
+script = ExtResource("1_4rggm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1629485771]
+texture = ExtResource("1_1dwur")
+region_enabled = true
+region_rect = Rect2(0.7477112, 1.7471466, 33.156708, 39.71096)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1456208320]
+shape = SubResource("CircleShape2D_4rggm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1455341905]
+libraries/ = SubResource("AnimationLibrary_pm0og")
+autoplay = &"falling"

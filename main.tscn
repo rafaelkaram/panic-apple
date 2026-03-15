@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://ch2a6vw7jijwq"]
+
+[ext_resource type="PackedScene" uid="uid://8jythwyuibww" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://rb0pf7n850th" path="res://Main.cs" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cvn5v82hnu6fd" path="res://good_food.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ccr5eyrw10fxx" path="res://cursed_apple.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://8waotd6slrmt" path="res://assets/Textures/background.jpg" id="4_kek77"]
+[ext_resource type="AudioStream" uid="uid://du0xsec7gnh2w" path="res://assets/sounds/SfxGood.wav" id="5_7mycd"]
+[ext_resource type="FontFile" uid="uid://dm43eurn37dg7" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="5_272bh"]
+[ext_resource type="AudioStream" uid="uid://ce8b27trms2bn" path="res://assets/sounds/SfxBad.wav" id="6_272bh"]
+[ext_resource type="AudioStream" uid="uid://dpksyxk631auo" path="res://assets/sounds/SfxGameOver.wav" id="8_5vw27"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.9999892, 0.1529209, 0.25251964, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 0.47948533, 0.46957833, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Main" type="Node2D" unique_id=2024469430]
+script = ExtResource("1_h2yge")
+GoodFoodScene = ExtResource("2_h2yge")
+CursedAppleScene = ExtResource("4_1bvp3")
+
+[node name="Background" type="TextureRect" parent="." unique_id=288780283]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kek77")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Player" parent="." unique_id=1638422842 instance=ExtResource("1_0xm2m")]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=779265970]
+wait_time = 1.5
+
+[node name="SfxGood" type="AudioStreamPlayer" parent="." unique_id=1091211852]
+stream = ExtResource("5_7mycd")
+
+[node name="SfxBad" type="AudioStreamPlayer" parent="." unique_id=413819347]
+stream = ExtResource("6_272bh")
+
+[node name="SfxGameOver" type="AudioStreamPlayer" parent="." unique_id=190163765]
+process_mode = 3
+stream = ExtResource("8_5vw27")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=707362518]
+
+[node name="GameOverScreen" type="ColorRect" parent="CanvasLayer" unique_id=17636840]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/GameOverScreen" unique_id=2128438319]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 256.0
+offset_right = 265.0
+offset_bottom = 294.0
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 31
+text = "GAME OVER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverScreen" unique_id=1531562126]
+process_mode = 3
+layout_mode = 0
+offset_left = 45.0
+offset_top = 378.0
+offset_right = 306.0
+offset_bottom = 428.0
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_272bh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5vw27")
+text = "Tentar novamente"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1486269971]
+offset_right = 123.0
+offset_bottom = 39.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="CanvasLayer" unique_id=2108975141]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 24
+
+[node name="LivesLabel" type="Label" parent="CanvasLayer" unique_id=1184439536]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -43.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = 33.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 24
+
+[node name="StartMenu" type="ColorRect" parent="CanvasLayer" unique_id=1705015127]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.94247305, 0.06327057, 0.35832682, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartMenu" unique_id=1778042437]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -75.0
+offset_right = 106.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=536454162]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 40
+text = "Apple Panic"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=323391527]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HighScoreLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=656910852]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=1374653972]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=1445792646]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("5_272bh")
+theme_override_font_sizes/font_size = 30
+text = "Start"
+
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/StartMenu/VBoxContainer/StartButton" to="." method="OnStartButtonPressed"]

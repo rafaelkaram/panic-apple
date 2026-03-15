@@ -1,0 +1,15 @@
+# Pastas do Godot
+.godot/
+.import/
+export_presets.cfg
+
+# Pastas do C# / .NET / Mono
+.mono/
+bin/
+obj/
+*.sln
+*.csproj
+
+# Arquivos temporários do Linux
+*~
+*.swp
