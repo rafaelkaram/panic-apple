@@ -35,7 +35,10 @@ public partial class Main : Node2D
 		}
 
 		_spawnTimer.Stop();
-		_spawnTimer.Timeout -= OnSpawnTimerTimeout;
+		if (_spawnTimer.IsConnected(Timer.SignalName.Timeout, Callable.From(OnSpawnTimerTimeout)))
+		{
+			_spawnTimer.Timeout -= OnSpawnTimerTimeout;
+		}
 		_spawnTimer.Timeout += OnSpawnTimerTimeout;
 
 		GameManager.Instance.ScoreChanged -= OnScoreChanged;
