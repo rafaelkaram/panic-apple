@@ -29,6 +29,6 @@ O jogo foi desenvolvido utilizando o motor **Godot Engine 4** com a linguagem **
 ## Tecnologias Utilizadas
 
 - Godot Engine 4.x
-- C# / .NET 6.0
-- Arquitetura de Sinais (Signals/Events)
+- .NET 8.0
+- C#
 - Persistência de dados via ConfigFile
